@@ -1,19 +1,30 @@
 package io.crowdcode.scrumr.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * @author Ingo Düppe (Crowdcode)
  */
 @Entity
-public class Customer {
+public class Customer extends AbstractEntity {
 
-    @Id
-    private Long id;
-
+    @Column(length = 400)
     private String name;
 
+    private String city;
+
+    @Transient
+    private String firlefanz;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public String getName() {
         return name;
@@ -23,11 +34,12 @@ public class Customer {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", firlefanz='" + firlefanz + '\'' +
+                "} " + super.toString();
     }
 }
